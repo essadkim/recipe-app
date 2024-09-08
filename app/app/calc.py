@@ -5,7 +5,7 @@ Dummy Calculator functions
 
 def add(x, y):
     """ add two numbers """
-    return x+y
+    return x + y
 
 
 def substract(x, y):
