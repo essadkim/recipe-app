@@ -115,7 +115,7 @@ class PublicUserApiTests(TestCase):
         """Test authentication is required for users."""
         res = self.client.get(ME_URL)
 
-        self.assertEqual(res.status_code, status.HTTP_400_BAD_REQUEST)
+        self.assertEqual(res.status_code, status.HTTP_401_UNAUTHORIZED)
 
 
 class PrivateUserApiTests(TestCase):
@@ -149,7 +149,7 @@ class PrivateUserApiTests(TestCase):
     def test_update_me_allowed(self):
         """Test update is allowed for the me endpoint"""
         payload = {'name':'Update name', 'password': 'newpassword123'}
-        res = self.client.update(ME_URL, payload)
+        res = self.client.patch(ME_URL, payload)
 
         self.user.refresh_from_db()
         self.assertEqual(self.user.name, payload['name'])
